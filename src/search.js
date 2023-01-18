@@ -3,7 +3,7 @@ import axios from "axios";
 import "./search.css";
 export default function Search() {
   let [city, setCity] = useState("");
-//   let [loaded, setLoaded] = useState(false);
+  //   let [loaded, setLoaded] = useState(false);
   let [weather, setWeather] = useState({});
 
   function displayWeather(response) {
@@ -30,7 +30,12 @@ export default function Search() {
 
   let form = (
     <form onSubmit={handleSubmit}>
-      <input type="search" placeholder="Enter a city.." onChange={updateCity} className=" w-50 p-2 me-2 mb-4 rounded shadow"/>
+      <input
+        type="search"
+        placeholder="Enter a city.."
+        onChange={updateCity}
+        className=" w-50 p-2 me-2 mb-4 rounded shadow"
+      />
       <button type="Submit" className="btn btn-primary submit-button ">
         Search
       </button>
