@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import axios from "axios";
-import css from "./search.css";
+import "./search.css";
 export default function Search() {
   let [city, setCity] = useState("");
-  let [loaded, setLoaded] = useState(false);
+//   let [loaded, setLoaded] = useState(false);
   let [weather, setWeather] = useState({});
 
   function displayWeather(response) {
-    setLoaded(true);
+    // setLoaded(true);
     setWeather({
       temperature: response.data.main.temp,
       wind: response.data.wind.speed,
