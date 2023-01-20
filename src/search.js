@@ -1,13 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./search.css";
 export default function Search() {
-  let [city, setCity] = useState("");
-  //   let [loaded, setLoaded] = useState(false);
+  let [city, setCity] = useState("Tehran");
   let [weather, setWeather] = useState({});
 
   function displayWeather(response) {
-    // setLoaded(true);
     setWeather({
       temperature: response.data.main.temp,
       wind: response.data.wind.speed,
@@ -17,12 +15,20 @@ export default function Search() {
     });
   }
 
-  function handleSubmit(event) {
-    event.preventDefault();
+  function callApi() {
     let apiKey = "bfd67b65e01f8c3751ffb4a48f09d863";
     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
     axios.get(apiUrl).then(displayWeather);
   }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    callApi();
+  }
+
+  useEffect(() => {
+    callApi();
+  }, []);
 
   function updateCity(event) {
     setCity(event.target.value);
@@ -31,6 +37,7 @@ export default function Search() {
   let form = (
     <form onSubmit={handleSubmit}>
       <input
+        value={city}
         type="search"
         placeholder="Enter a city.."
         onChange={updateCity}
@@ -42,7 +49,6 @@ export default function Search() {
     </form>
   );
 
-  //   if (loaded) {
   return (
     <div className="container">
       <div className="row">{form}</div>
@@ -65,7 +71,4 @@ export default function Search() {
       </div>
     </div>
   );
-  //   } else {
-  //     return form;
-  //   }
 }
