@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import "./search.css";
 export default function Search() {
