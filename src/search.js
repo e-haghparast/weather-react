@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import axios from "axios";
 import "./search.css";
 export default function Search() {
@@ -15,11 +15,11 @@ export default function Search() {
     });
   }
 
-  function callApi() {
+  useCallback(function callApi() {
     let apiKey = "bfd67b65e01f8c3751ffb4a48f09d863";
     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
     axios.get(apiUrl).then(displayWeather);
-  }
+  });
 
   function handleSubmit(event) {
     event.preventDefault();
