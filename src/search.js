@@ -28,7 +28,7 @@ export default function Search() {
 
   useEffect(() => {
     callApi();
-  }, []);
+  }, [callApi]);
 
   function updateCity(event) {
     setCity(event.target.value);
